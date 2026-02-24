@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZoneIntel — Scatter Graph Engine v3</title>
+<title>ZoneIntel — v3</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap');
@@ -150,15 +150,15 @@ header{display:flex;align-items:center;gap:16px;padding:10px 20px;background:var
 
 <div id="upload-screen">
   <div>
-    <div class="upload-title">Floor Zoning Intelligence<br><em>Scatter Graph Engine v3</em></div>
-    <div class="upload-sub" style="margin-top:8px">Fully PDF-aligned 4-step algorithm: real adjacency scoring, superblock splitting, geometric S/M/L sizing, and neighbourhood boundary definition.</div>
+    <div class="upload-title">Floor Zoning Algorithm <br><em>Scatter Graph Engine v3</em></div>
+    <div class="upload-sub" style="margin-top:8px"> </div>
   </div>
   <div class="algo-note">
-    <strong>Algorithm — What's now actually implemented (matching PDF logic):</strong>
-    Step 1 — Proximity score uses ALL BTB adjacency values (−1 forbidden, +1 required) + building feature scores per block type. Placement order: Destination → Social Hub → Support Superblocks → Concentrated WE → ME-WE bundles.<br>
-    Step 2 — Zone splitting groups by superblock with block count + total area shown per split zone, fungibility applied when zone can't fit.<br>
-    Step 3 — Geometric sizing: S/M/L classification (Function/Comfort/Luxury), aspect ratio rules by open/enclosed, column fit scoring.<br>
-    Step 4 — Neighbourhood boundary labels (NH-1…NH-N) with area and block count, matching zoning layout PDF style.
+    <strong>Algorithm:</strong>
+    Proximity score uses ALL BTB adjacency values (−1 forbidden, +1 required) + building feature scores per block type. Placement order: Destination → Social Hub → Support Superblocks → Concentrated WE → ME-WE bundles.<br>
+    Zone splitting groups by superblock with block count + total area shown per split zone, fungibility applied when zone can't fit.<br>
+    Geometric sizing: S/M/L classification (Function/Comfort/Luxury), aspect ratio rules by open/enclosed, column fit scoring.<br>
+    Neighbourhood boundary labels (NH-1…NH-N) with area and block count, matching zoning layout style.
   </div>
   <div class="upload-grid">
     <div class="upload-card" id="json-card">
@@ -917,7 +917,7 @@ function resizeCanvas(){const c=document.getElementById('map-container');canvas.
 //  STEP MANAGEMENT
 // ═══════════════════════════════════════════════════════════
 const STEP_LABELS=[
-  {n:1,label:'Step 1 — Scatter Graph',sub:'Full BTB + building feature proximity scoring, PDF placement order'},
+  {n:1,label:'Step 1 — Scatter Graph',sub:'Full BTB + building feature proximity scoring, placement order'},
   {n:2,label:'Step 2 — Zone Splitting',sub:'Superblock grouping with block count, area & fungibility check'},
   {n:3,label:'Step 3 — Geometric Sizing',sub:'S/M/L classification, aspect ratio rules, column fit (Fit-rules 1-5)'},
   {n:4,label:'Step 4 — Zone Boundaries',sub:'Neighbourhood labels (NH-1…N) with area & block count'},
@@ -926,7 +926,7 @@ function buildSidebar(){
   const sb=document.getElementById('step-buttons');
   sb.innerHTML=STEP_LABELS.map(s=>`<div class="step-btn ${currentStep===s.n?'active':''}" id="stepbtn-${s.n}" onclick="setCurrentStep(${s.n})"><div class="step-num">${s.n}</div><div class="step-info"><h5>${s.label.replace('Step '+s.n+' — ','')}</h5><p>${s.sub}</p></div></div>`).join('');
   const modes=[
-    {id:'scatter',label:'Scatter (PDF Colors)'},
+    {id:'scatter',label:'Scatter Graph'},
     {id:'placement',label:'Placement Category'},
     {id:'superblock',label:'Superblock Groups'},
     {id:'blocktype',label:'Block Type'},
